@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=4 uid="uid://v0evmgjmbixo"]
+
+[ext_resource type="Texture2D" uid="uid://ty8jjaqj12bc" path="res://Assets/Backgrounds/Tileset.png" id="1_7rqgy"]
+[ext_resource type="PackedScene" uid="uid://h7ijrprij2gk" path="res://Scenes/Prefabs/Player.tscn" id="1_hpc76"]
+[ext_resource type="PackedScene" uid="uid://bp3p2br6tloi" path="res://Scenes/Prefabs/killzone.tscn" id="4_7rqgy"]
+[ext_resource type="PackedScene" uid="uid://c1f61apj213n3" path="res://Scenes/Prefabs/flying_monster.tscn" id="5_qxria"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxria"]
+texture = ExtResource("1_7rqgy")
+texture_region_size = Vector2i(1000, 1000)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-461.492, -131.096, 472.121, -136.41, 470.764, 427.968, -457.796, 430.561)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -166.798, 500, 5.55994, 500, 500, -500, 500)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, 0, 500, 5.55994, 500, 500, -500, 500)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, 0, 500, -261.316, 500, 500, -500, 500)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -250.196, 500, -244.636, 500, 5.55994, -500, 11.1198)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -250.196, 500, -244.636, 500, 5.55994, -500, 11.1198)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -250.196, 500, -244.636, 500, 5.55994, -500, 11.1198)
+
+[sub_resource type="TileSet" id="TileSet_7rqgy"]
+tile_size = Vector2i(1000, 1000)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+sources/2 = SubResource("TileSetAtlasSource_qxria")
+
+[node name="Test Level 1" type="Node2D"]
+
+[node name="Tilemaps" type="Node" parent="."]
+
+[node name="Midground" type="TileMapLayer" parent="Tilemaps"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgAAAAAAAAABAP//AgAAAAAAAAACAP//AgAAAAAAAAADAP//AgAAAAEAAAAEAP//AgABAAEAAAAFAP//AgABAAEAAAADAP7/AgAAAAIAAAAEAP7/AgAAAAIAAAAFAP7/AgAAAAIAAAA=")
+tile_set = SubResource("TileSet_7rqgy")
+
+[node name="Player" parent="." instance=ExtResource("1_hpc76")]
+position = Vector2(591, -971)
+scale = Vector2(0.5, 0.5)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-7, -620)
+scale = Vector2(0.937702, -0.847059)
+zoom = Vector2(0.5, 0.5)
+limit_left = -1700
+limit_bottom = 120
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Killzone" parent="." instance=ExtResource("4_7rqgy")]
+position = Vector2(0, 72)
+
+[node name="Flying Noise" parent="." instance=ExtResource("5_qxria")]
+position = Vector2(-192, -1169)
+scale = Vector2(0.5, 0.5)

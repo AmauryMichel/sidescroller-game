@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1f61apj213n3"]
+
+[ext_resource type="Script" uid="uid://fseflsyxjm4r" path="res://Scripts/flying_monster.gd" id="1_ajqf0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p5qi7"]
+load_path = "res://.godot/imported/Noise Sprite Sheet.png-6ba8d60ed24a3f6e7e42221d2f463a41.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f3i6"]
+atlas = SubResource("CompressedTexture2D_p5qi7")
+region = Rect2(0, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe7bt"]
+atlas = SubResource("CompressedTexture2D_p5qi7")
+region = Rect2(1000, 0, 1000, 1000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ytpux"]
+animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_5f3i6")
+}, {
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_pe7bt")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dccm2"]
+size = Vector2(740, 664)
+
+[node name="Flying Noise" type="CharacterBody2D"]
+script = ExtResource("1_ajqf0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ytpux")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
+frame_progress = 0.598513
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-33, 105)
+shape = SubResource("RectangleShape2D_dccm2")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
