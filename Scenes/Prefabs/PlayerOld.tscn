@@ -1,60 +1,54 @@
-[gd_scene load_steps=24 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=18 format=3 uid="uid://h7ijrprij2gk"]
 
-[ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
-[ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Sprite Sheet.png" id="2_212jg"]
-[ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_rhohb"]
-[ext_resource type="Script" uid="uid://ilgqklvc3not" path="res://Scripts/Player/States/idle.gd" id="4_4pem1"]
-[ext_resource type="Script" uid="uid://drftccj11r5d0" path="res://Scripts/Player/States/walk.gd" id="5_xhr4h"]
-[ext_resource type="Script" uid="uid://le21kpmc3dam" path="res://Scripts/Player/States/jump.gd" id="6_owm4a"]
-[ext_resource type="Script" uid="uid://k67yjbsscxcd" path="res://Scripts/Player/States/falling.gd" id="7_8vq1g"]
-[ext_resource type="Script" uid="uid://cfx05ytdma5x6" path="res://Scripts/Player/States/attack.gd" id="8_o0cdc"]
+[ext_resource type="Script" uid="uid://dijc1jeu8ix47" path="res://Scripts/Player/playerOld.gd" id="1_42ksm"]
+[ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Sprite Sheet.png" id="2_42ksm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vt35"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(0, 3000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lrdb"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(1000, 3000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkbd8"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(0, 0, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ortc"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(1000, 0, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_imvdw"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(2000, 0, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ywuut"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(0, 3000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eri3q"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(1000, 3000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8iar"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(2000, 3000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4csm"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(0, 2000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6srnc"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(1000, 2000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42ksm"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(0, 1000, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wf5m"]
-atlas = ExtResource("2_212jg")
+atlas = ExtResource("2_42ksm")
 region = Rect2(1000, 1000, 1000, 1000)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nn08x"]
@@ -139,7 +133,7 @@ size = Vector2(321, 123)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
-script = ExtResource("1_ufpo8")
+script = ExtResource("1_42ksm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -501)
@@ -158,43 +152,4 @@ position = Vector2(260.5, -540)
 shape = SubResource("RectangleShape2D_42ksm")
 disabled = true
 
-[node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_rhohb")]
-starting_state = NodePath("idle")
-
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state", "jump_state", "falling_state", "attack_state")]
-script = ExtResource("4_4pem1")
-walk_state = NodePath("../walk")
-jump_state = NodePath("../jump")
-falling_state = NodePath("../falling")
-attack_state = NodePath("../attack")
-animation_name = "Idle"
-
-[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "falling_state")]
-script = ExtResource("5_xhr4h")
-idle_state = NodePath("../idle")
-jump_state = NodePath("../jump")
-falling_state = NodePath("../falling")
-animation_name = "Walk"
-
-[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "falling_state")]
-script = ExtResource("6_owm4a")
-idle_state = NodePath("../idle")
-walk_state = NodePath("../walk")
-falling_state = NodePath("../falling")
-animation_name = "Jump"
-
-[node name="falling" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state")]
-script = ExtResource("7_8vq1g")
-idle_state = NodePath("../idle")
-walk_state = NodePath("../walk")
-animation_name = "Falling"
-
-[node name="attack" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state")]
-script = ExtResource("8_o0cdc")
-idle_state = NodePath("../idle")
-walk_state = NodePath("../walk")
-jump_state = NodePath("../jump")
-animation_name = "Punch1"
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="state_machine/attack" method="_on_animated_sprite_2d_animation_finished"]

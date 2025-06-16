@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://v0evmgjmbixo"]
 
 [ext_resource type="Texture2D" uid="uid://ty8jjaqj12bc" path="res://Assets/Backgrounds/Tileset.png" id="1_7rqgy"]
-[ext_resource type="PackedScene" uid="uid://h7ijrprij2gk" path="res://Scenes/Prefabs/Player.tscn" id="1_hpc76"]
+[ext_resource type="PackedScene" uid="uid://p0y8p6yvvw2h" path="res://Scenes/Prefabs/Player.tscn" id="2_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://bp3p2br6tloi" path="res://Scenes/Prefabs/killzone.tscn" id="4_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://c1f61apj213n3" path="res://Scenes/Prefabs/flying_monster.tscn" id="5_qxria"]
 
@@ -38,13 +38,13 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgAAAAAAAAABAP//AgAAAAAAAAACAP//AgAAAAAAAAADAP//AgAAAAEAAAAEAP//AgABAAEAAAAFAP//AgABAAEAAAADAP7/AgAAAAIAAAAEAP7/AgAAAAIAAAAFAP7/AgAAAAIAAAA=")
 tile_set = SubResource("TileSet_7rqgy")
 
-[node name="Player" parent="." instance=ExtResource("1_hpc76")]
-position = Vector2(591, -971)
+[node name="Player" parent="." instance=ExtResource("2_7rqgy")]
+position = Vector2(1014, -807)
 scale = Vector2(0.5, 0.5)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-7, -620)
-scale = Vector2(0.937702, -0.847059)
+position = Vector2(-5, -548)
+scale = Vector2(0.468851, -0.42353)
 zoom = Vector2(0.5, 0.5)
 limit_left = -1700
 limit_bottom = 120
