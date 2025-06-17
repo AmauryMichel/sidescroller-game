@@ -4,8 +4,6 @@ extends State
 @export var walk_state: State
 @export var falling_state: State
 
-@export var jump_force: float = 2000.0
-
 func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force

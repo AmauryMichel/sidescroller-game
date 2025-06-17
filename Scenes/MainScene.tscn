@@ -7,24 +7,26 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxria"]
 texture = ExtResource("1_7rqgy")
-texture_region_size = Vector2i(1000, 1000)
+texture_region_size = Vector2i(1024, 1024)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-461.492, -131.096, 472.121, -136.41, 470.764, 427.968, -457.796, 430.561)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-440.572, -136.603, 512, -134.711, 512, 437.766, -457.796, 430.561)
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -166.798, 500, 5.55994, 500, 500, -500, 500)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-512, -173.858, 512, 23.1405, 512, 512, -512, 512)
 1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, 0, 500, 5.55994, 500, 500, -500, 500)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-512, -2.04907, 512, 0, 512, 512, -512, 512)
 2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, 0, 500, -261.316, 500, 500, -500, 500)
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-512, 15.6921, 512, -260.49, 512, 512, -512, 512)
 0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -250.196, 500, -244.636, 500, 5.55994, -500, 11.1198)
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-512, -264.463, 512, -262.81, 512, -1.65289, -512, -2.47937)
 1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -250.196, 500, -244.636, 500, 5.55994, -500, 11.1198)
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-512, -264.463, 512, -262.81, 512, -1.65289, -512, -2.47937)
 2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-500, -250.196, 500, -244.636, 500, 5.55994, -500, 11.1198)
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-512, -264.463, 512, -262.81, 512, -1.65289, -512, -2.47937)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(440.572, -136.603, -512, -134.711, -512, 437.766, 457.796, 430.561)
 
 [sub_resource type="TileSet" id="TileSet_7rqgy"]
-tile_size = Vector2i(1000, 1000)
+tile_size = Vector2i(1024, 1024)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/2 = SubResource("TileSetAtlasSource_qxria")
@@ -35,17 +37,15 @@ sources/2 = SubResource("TileSetAtlasSource_qxria")
 
 [node name="Midground" type="TileMapLayer" parent="Tilemaps"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgAAAAAAAAABAP//AgAAAAAAAAACAP//AgAAAAAAAAADAP//AgAAAAEAAAAEAP//AgABAAEAAAAFAP//AgABAAEAAAADAP7/AgAAAAIAAAAEAP7/AgAAAAIAAAAFAP7/AgAAAAIAAAA=")
+tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgABAAAAAAABAP//AgAAAAAAAAAFAP//AgABAAEAAAADAP7/AgAAAAIAAAAEAP7/AgAAAAIAAAAFAP7/AgAAAAIAAAAGAP//AgACAAEAAAAHAP//AgAAAAIAAAAIAP//AgAAAAIAAAACAP//AgABAAAAAAADAP//AgAAAAEAAAAEAP//AgABAAEAAAA=")
 tile_set = SubResource("TileSet_7rqgy")
 
 [node name="Player" parent="." instance=ExtResource("2_7rqgy")]
 position = Vector2(1014, -807)
-scale = Vector2(0.5, 0.5)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-5, -548)
-scale = Vector2(0.468851, -0.42353)
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.17, 0.17)
 limit_left = -1700
 limit_bottom = 120
 limit_smoothed = true
@@ -56,4 +56,3 @@ position = Vector2(0, 72)
 
 [node name="Flying Noise" parent="." instance=ExtResource("5_qxria")]
 position = Vector2(-192, -1169)
-scale = Vector2(0.5, 0.5)

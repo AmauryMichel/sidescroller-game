@@ -1,26 +1,24 @@
 [gd_scene load_steps=7 format=3 uid="uid://c1f61apj213n3"]
 
 [ext_resource type="Script" uid="uid://fseflsyxjm4r" path="res://Scripts/flying_monster.gd" id="1_ajqf0"]
+[ext_resource type="Texture2D" uid="uid://cjx7fvon1lolj" path="res://Assets/Sprites/Monster Sprite Sheet.png" id="2_wp1k5"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p5qi7"]
-load_path = "res://.godot/imported/Noise Sprite Sheet.png-6ba8d60ed24a3f6e7e42221d2f463a41.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlqtq"]
+atlas = ExtResource("2_wp1k5")
+region = Rect2(0, 0, 1024, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5f3i6"]
-atlas = SubResource("CompressedTexture2D_p5qi7")
-region = Rect2(0, 0, 1000, 1000)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pe7bt"]
-atlas = SubResource("CompressedTexture2D_p5qi7")
-region = Rect2(1000, 0, 1000, 1000)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks1kr"]
+atlas = ExtResource("2_wp1k5")
+region = Rect2(1024, 0, 1024, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ytpux"]
 animations = [{
 "frames": [{
 "duration": 8.0,
-"texture": SubResource("AtlasTexture_5f3i6")
+"texture": SubResource("AtlasTexture_nlqtq")
 }, {
 "duration": 8.0,
-"texture": SubResource("AtlasTexture_pe7bt")
+"texture": SubResource("AtlasTexture_ks1kr")
 }],
 "loop": true,
 "name": &"Idle",
