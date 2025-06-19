@@ -22,7 +22,7 @@ func change_state(new_state: State) -> void:
 
 	current_state = new_state
 	current_state.enter()
-	
+
 # Pass through functions for the Player to call,
 # handling state changes as needed.
 func process_physics(delta: float) -> void:
@@ -39,7 +39,7 @@ func process_frame(delta: float) -> void:
 	var new_state = current_state.process_frame(delta)
 	if new_state:
 		change_state(new_state)
-		
+
 func force_change_state(new_state_string : String):
 	var new_state = states.get(new_state_string.to_lower())
 	
@@ -47,3 +47,8 @@ func force_change_state(new_state_string : String):
 	
 	current_state = new_state
 	new_state.enter()
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	var new_state = current_state.animation_finished()
+	if new_state:
+		change_state(new_state)
