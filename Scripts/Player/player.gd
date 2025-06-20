@@ -13,9 +13,9 @@ func _ready() -> void:
 	state_machine.init(self)
 	
 	# Get a list of all the attack collisions
-	for child in attack_collisions.get_children():
-		if child is CollisionShape2D:
-			list_attack_collisions[child.name.to_lower()] = child
+	for collision in attack_collisions.get_children():
+		if collision is CollisionShape2D:
+			list_attack_collisions[collision.name.to_lower()] = collision
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -28,3 +28,14 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+
+#Flip sprites and collisions
+func flip(direction: bool):
+	animated_sprite.flip_h = direction
+	
+	for collision in attack_collisions.get_children():
+		if collision is CollisionShape2D:
+			if !direction:
+				collision.position.x = abs(collision.position.x)
+			else:
+				collision.position.x = abs(collision.position.x) * -1

@@ -8,8 +8,9 @@ func process_physics(delta: float) -> State:
 
 	var movement = Input.get_axis('move_left', 'move_right') * move_speed
 	
+	#Flip the sprite and collisions
 	if movement != 0:
-		parent.animated_sprite.flip_h = movement < 0
+		parent.flip(movement < 0)
 	parent.velocity.x = movement
 	parent.move_and_slide()
 	

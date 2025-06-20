@@ -16,7 +16,7 @@ func enter() -> void:
 	input_buffer = null
 	returned_state = null
 	parent.animated_sprite.play(animation_name)
-	if (!attack_collision):
+	if (!attack_collision): #Get the collision linked to the attack
 		attack_collision = parent.list_attack_collisions[collision_name]
 	attack_collision.disabled = false
 
@@ -27,6 +27,7 @@ func process_input(_event: InputEvent) -> State:
 	#Buffer next input
 	if Input.is_action_just_pressed('attack'):
 		input_buffer = "attack"
+		#TODO Switch to next attack before the end of the animation
 	elif Input.is_action_just_pressed('jump'):
 		input_buffer = "jump"
 	return null

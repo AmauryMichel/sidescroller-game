@@ -23,7 +23,7 @@ func process_physics(delta: float) -> State:
 	
 	if direction: #If the character is moving
 		#Flip the sprite and collisions
-		parent.animated_sprite.flip_h = direction < 0
+		parent.flip(direction < 0)
 		parent.velocity.x = direction * move_speed
 		#TODO switch to running
 	else:
@@ -31,10 +31,11 @@ func process_physics(delta: float) -> State:
 	
 	parent.move_and_slide()
 	
+	#TODO Adjust timing for falling
 	if !parent.is_on_floor():
 		cooldown -= delta
 		if cooldown <= 0:
 			return falling_state
-	else:
+	else: #Reset cooldown
 		cooldown = 0.1
 	return null
