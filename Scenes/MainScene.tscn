@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ty8jjaqj12bc" path="res://Assets/Backgrounds/Tileset.png" id="1_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://p0y8p6yvvw2h" path="res://Scenes/Prefabs/Player.tscn" id="2_7rqgy"]
-[ext_resource type="PackedScene" uid="uid://bp3p2br6tloi" path="res://Scenes/Prefabs/killzone.tscn" id="4_7rqgy"]
+[ext_resource type="PackedScene" uid="uid://bp3p2br6tloi" path="res://Scenes/Prefabs/Components/killzone.tscn" id="4_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://c1f61apj213n3" path="res://Scenes/Prefabs/flying_monster.tscn" id="5_qxria"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxria"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=25 format=3 uid="uid://p0y8p6yvvw2h"]
 
 [ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
 [ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Sprite Sheet.png" id="2_212jg"]
+[ext_resource type="Script" uid="uid://3x31pcdt0ekm" path="res://Scripts/Component/hurtbox.gd" id="3_p8iar"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_rhohb"]
 [ext_resource type="Script" uid="uid://ilgqklvc3not" path="res://Scripts/Player/States/idle.gd" id="4_4pem1"]
 [ext_resource type="Script" uid="uid://drftccj11r5d0" path="res://Scripts/Player/States/walk.gd" id="5_xhr4h"]
@@ -152,6 +153,7 @@ position = Vector2(0, -163)
 shape = SubResource("CircleShape2D_52ee3")
 
 [node name="attack_collisions" type="Area2D" parent="."]
+script = ExtResource("3_p8iar")
 
 [node name="attack1" type="CollisionShape2D" parent="attack_collisions"]
 position = Vector2(260.5, -540)
@@ -213,3 +215,5 @@ animation_name = "Punch2"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="state_machine" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="attack_collisions" to="attack_collisions" method="_on_area_entered"]
+[connection signal="area_shape_entered" from="attack_collisions" to="attack_collisions" method="_on_area_shape_entered"]
