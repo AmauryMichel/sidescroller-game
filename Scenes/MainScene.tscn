@@ -55,4 +55,4 @@ position_smoothing_enabled = true
 position = Vector2(0, 72)
 
 [node name="Flying Noise" parent="." instance=ExtResource("5_qxria")]
-position = Vector2(-186, -1308)
+position = Vector2(-285, -1828)
