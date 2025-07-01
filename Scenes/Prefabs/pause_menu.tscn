@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://du5e0negtgvok"]
+
+[ext_resource type="Script" uid="uid://dlwgewgfouxrw" path="res://Scripts/Component/pause_menu.gd" id="1_3ofxm"]
+
+[node name="Pause Menu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3ofxm")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1166.0
+offset_bottom = 667.0

@@ -23,7 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 	
-	if Input.is_action_just_pressed("escape") and is_on_floor():
+	if Input.is_action_just_pressed("break") and is_on_floor():
 		state_machine.force_change_state("idle")
 
 func _process(delta: float) -> void:

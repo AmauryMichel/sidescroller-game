@@ -32,6 +32,7 @@ physics_layer_0/collision_mask = 2
 sources/2 = SubResource("TileSetAtlasSource_qxria")
 
 [node name="Test Level 1" type="Node2D"]
+process_mode = 1
 
 [node name="Tilemaps" type="Node" parent="."]
 

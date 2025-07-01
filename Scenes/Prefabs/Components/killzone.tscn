@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bp3p2br6tloi"]
 
-[ext_resource type="Script" uid="uid://dxftooolhf8k5" path="res://Scripts/killzone.gd" id="1_xtptk"]
+[ext_resource type="Script" uid="uid://dxftooolhf8k5" path="res://Scripts/Component/killzone.gd" id="1_xtptk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s4e4y"]
 
