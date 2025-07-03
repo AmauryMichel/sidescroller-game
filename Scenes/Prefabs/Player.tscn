@@ -136,7 +136,7 @@ animations = [{
 radius = 162.631
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8iar"]
-size = Vector2(192, 748)
+size = Vector2(192, 752)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42ksm"]
 size = Vector2(321, 123)
@@ -151,18 +151,21 @@ sprite_frames = SubResource("SpriteFrames_nn08x")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="ground_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -163)
 shape = SubResource("CircleShape2D_52ee3")
 
-[node name="hitbox_area" type="Area2D" parent="."]
+[node name="hurtbox_area" type="Area2D" parent="."]
 position = Vector2(0, -163)
+collision_layer = 4
 
-[node name="hitbox" type="CollisionShape2D" parent="hitbox_area"]
-position = Vector2(-6, -201)
+[node name="hurtbox_idle" type="CollisionShape2D" parent="hurtbox_area"]
+position = Vector2(-6, -213)
 shape = SubResource("RectangleShape2D_p8iar")
 
 [node name="attack_collisions" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
 script = ExtResource("3_p8iar")
 
 [node name="attack1" type="CollisionShape2D" parent="attack_collisions"]

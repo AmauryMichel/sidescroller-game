@@ -8,7 +8,7 @@ var speed = 40
 var player: Node2D = null
 var isAttacking: bool = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if isAttacking:
 		position += (player.position - position)/speed
 		#Flip the sprite to face player
@@ -21,10 +21,10 @@ func take_damage(damage: int):
 	if health <= 0:
 		self.queue_free()
 
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	player = body
+func _on_detection_area_area_entered(area: Area2D) -> void:
+	player = area.get_parent()
 	isAttacking = true
 
-func _on_detection_area_body_exited(body: Node2D) -> void:
+func _on_detection_area_area_exited(area: Area2D) -> void:
 	player = null
 	isAttacking = false
