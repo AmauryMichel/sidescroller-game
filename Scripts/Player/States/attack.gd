@@ -3,6 +3,7 @@ extends State
 @export var idle_state: State
 @export var walk_state: State
 @export var jump_state: State
+
 @export var next_attack_state: State
 
 @export var collision_name: String
@@ -13,9 +14,11 @@ var input_buffer
 var returned_state
 
 func enter() -> void:
+	super()
+	
 	input_buffer = null
 	returned_state = null
-	parent.animated_sprite.play(animation_name)
+	
 	if (!attack_collision): #Get the collision linked to the attack
 		attack_collision = parent.list_attack_collisions[collision_name]
 	attack_collision.disabled = false
