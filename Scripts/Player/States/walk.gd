@@ -3,12 +3,15 @@ extends State
 @export var idle_state: State
 @export var jump_state: State
 @export var falling_state: State
+@export var attack_state: State
 
 var cooldown = 0.1
 
 var direction
 
 func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed('attack'):
+		return attack_state
 	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
 		return jump_state
 	return null

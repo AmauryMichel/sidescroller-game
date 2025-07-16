@@ -190,11 +190,12 @@ falling_state = NodePath("../falling")
 attack_state = NodePath("../attack")
 animation_name = "Idle"
 
-[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "falling_state")]
+[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "falling_state", "attack_state")]
 script = ExtResource("5_xhr4h")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 falling_state = NodePath("../falling")
+attack_state = NodePath("../attack")
 animation_name = "Walk"
 
 [node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "falling_state")]
