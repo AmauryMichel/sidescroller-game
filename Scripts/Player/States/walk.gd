@@ -5,8 +5,6 @@ extends State
 @export var falling_state: State
 @export var attack_state: State
 
-var cooldown = 0.1
-
 var direction
 
 func process_input(_event: InputEvent) -> State:
@@ -34,11 +32,7 @@ func process_physics(delta: float) -> State:
 	
 	parent.move_and_slide()
 	
-	#TODO Adjust timing for falling
 	if !parent.is_on_floor():
-		cooldown -= delta
-		if cooldown <= 0:
-			return falling_state
-	else: #Reset cooldown
-		cooldown = 0.1
+		return falling_state
+	
 	return null

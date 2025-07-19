@@ -177,14 +177,14 @@ size = Vector2(321, 123)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
+floor_snap_length = 32.0
 script = ExtResource("1_ufpo8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, -501)
+position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_nn08x")
 animation = &"Run"
 autoplay = "Idle"
-frame_progress = 0.995893
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -163)
