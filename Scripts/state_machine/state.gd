@@ -4,6 +4,7 @@ extends Node
 @export var animation_name: String
 
 @export var move_speed: float = 1500
+@export var run_speed: float = 3000
 @export var jump_force: float = 3000
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")

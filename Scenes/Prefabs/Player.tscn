@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=32 format=3 uid="uid://p0y8p6yvvw2h"]
 
 [ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
 [ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Movement Sheet.png" id="2_212jg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://drftccj11r5d0" path="res://Scripts/Player/States/walk.gd" id="5_xhr4h"]
 [ext_resource type="Script" uid="uid://le21kpmc3dam" path="res://Scripts/Player/States/jump.gd" id="6_owm4a"]
 [ext_resource type="Script" uid="uid://k67yjbsscxcd" path="res://Scripts/Player/States/falling.gd" id="7_8vq1g"]
+[ext_resource type="Script" uid="uid://cn4qk1ad8tn5w" path="res://Scripts/Player/States/run.gd" id="8_6srnc"]
 [ext_resource type="Script" uid="uid://cfx05ytdma5x6" path="res://Scripts/Player/States/attack.gd" id="8_o0cdc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eri3q"]
@@ -231,6 +232,10 @@ jump_state = NodePath("../jump")
 falling_state = NodePath("../falling")
 attack_state = NodePath("../attack")
 animation_name = "Walk"
+
+[node name="run" type="Node" parent="state_machine"]
+script = ExtResource("8_6srnc")
+metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "falling_state")]
 script = ExtResource("6_owm4a")

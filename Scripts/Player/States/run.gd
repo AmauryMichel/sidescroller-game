@@ -1,7 +1,6 @@
 extends State
 
 @export var idle_state: State
-@export var run_state: State
 @export var jump_state: State
 @export var falling_state: State
 @export var attack_state: State
@@ -26,10 +25,10 @@ func process_physics(delta: float) -> State:
 	if direction: #If the character is moving
 		#Flip the sprite and collisions
 		parent.flip(direction < 0)
-		parent.velocity.x = direction * move_speed
+		parent.velocity.x = direction * run_speed
 		#TODO switch to running
 	else:
-		parent.velocity.x = move_toward(parent.velocity.x, 0, move_speed)
+		parent.velocity.x = move_toward(parent.velocity.x, 0, run_speed)
 	
 	parent.move_and_slide()
 	
