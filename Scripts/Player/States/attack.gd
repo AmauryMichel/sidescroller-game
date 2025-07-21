@@ -16,6 +16,8 @@ var returned_state
 func enter() -> void:
 	super()
 	
+	parent.set_running(false)
+	
 	input_buffer = null
 	returned_state = null
 	

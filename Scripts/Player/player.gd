@@ -5,6 +5,13 @@ extends CharacterBody2D
 @onready var attack_collisions: Area2D = $attack_collisions
 @onready var state_machine = $state_machine
 
+# State variables
+var move_speed: float = 1500
+var walk_speed: float = 1500
+var run_speed: float = 3000
+var jump_force: float = 3000
+var isRunning = false
+
 var list_attack_collisions: Dictionary = {}
 
 func _ready() -> void:
@@ -18,6 +25,9 @@ func _ready() -> void:
 			list_attack_collisions[collision.name.to_lower()] = collision
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_pressed('run') && is_on_floor():
+		set_running(true)
+	
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
@@ -39,3 +49,11 @@ func flip(direction: bool):
 				collision.position.x = abs(collision.position.x)
 			else:
 				collision.position.x = abs(collision.position.x) * -1
+
+func set_running(run: bool):
+	if run:
+		isRunning = true
+		move_speed = run_speed
+	else:
+		isRunning = false
+		move_speed = walk_speed

@@ -9,6 +9,8 @@ extends State
 var direction
 
 func process_input(_event: InputEvent) -> State:
+	if parent.isRunning:
+		return run_state
 	if Input.is_action_just_pressed('attack'):
 		return attack_state
 	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
@@ -26,10 +28,9 @@ func process_physics(delta: float) -> State:
 	if direction: #If the character is moving
 		#Flip the sprite and collisions
 		parent.flip(direction < 0)
-		parent.velocity.x = direction * move_speed
-		#TODO switch to running
+		parent.velocity.x = direction * parent.move_speed
 	else:
-		parent.velocity.x = move_toward(parent.velocity.x, 0, move_speed)
+		parent.velocity.x = move_toward(parent.velocity.x, 0, parent.move_speed)
 	
 	parent.move_and_slide()
 	

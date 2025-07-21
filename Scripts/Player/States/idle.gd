@@ -1,6 +1,7 @@
 extends State
 
 @export var walk_state: State
+@export var run_state: State
 @export var jump_state: State
 @export var falling_state: State
 @export var attack_state: State
@@ -10,6 +11,7 @@ var cooldown = 0.1
 func enter() -> void:
 	super()
 	parent.velocity.x = 0
+	parent.set_running(false)
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('attack'):
@@ -17,7 +19,10 @@ func process_input(_event: InputEvent) -> State:
 	if Input.is_action_pressed('jump') and parent.is_on_floor():
 		return jump_state
 	if Input.is_action_pressed('move_left') or Input.is_action_pressed('move_right'):
-		return walk_state
+		if parent.isRunning:
+			return run_state
+		else:
+			return walk_state
 	return null
 
 func process_physics(delta: float) -> State:

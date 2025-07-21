@@ -25,10 +25,9 @@ func process_physics(delta: float) -> State:
 	if direction: #If the character is moving
 		#Flip the sprite and collisions
 		parent.flip(direction < 0)
-		parent.velocity.x = direction * run_speed
-		#TODO switch to running
+		parent.velocity.x = direction * parent.move_speed
 	else:
-		parent.velocity.x = move_toward(parent.velocity.x, 0, run_speed)
+		parent.velocity.x = move_toward(parent.velocity.x, 0, parent.move_speed)
 	
 	parent.move_and_slide()
 	

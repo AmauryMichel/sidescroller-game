@@ -2,11 +2,12 @@ extends State
 
 @export var idle_state: State
 @export var walk_state: State
+@export var run_state: State
 @export var falling_state: State
 
 func enter() -> void:
 	super()
-	parent.velocity.y = -jump_force
+	parent.velocity.y = -parent.jump_force
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
@@ -14,7 +15,7 @@ func process_physics(delta: float) -> State:
 	if parent.velocity.y > 0:
 		return falling_state
 	
-	var movement = Input.get_axis('move_left', 'move_right') * move_speed
+	var movement = Input.get_axis('move_left', 'move_right') * parent.move_speed
 	
 	#Flip the sprite and collisions
 	if movement != 0:
@@ -24,7 +25,10 @@ func process_physics(delta: float) -> State:
 	
 	if parent.is_on_floor():
 		if movement != 0:
-			return walk_state
+			if parent.isRunning:
+				return run_state
+			else:
+				return walk_state
 		return idle_state
 	
 	return null

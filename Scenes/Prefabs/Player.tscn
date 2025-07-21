@@ -217,37 +217,46 @@ disabled = true
 [node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_rhohb")]
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state", "jump_state", "falling_state", "attack_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state", "run_state", "jump_state", "falling_state", "attack_state")]
 script = ExtResource("4_4pem1")
 walk_state = NodePath("../walk")
+run_state = NodePath("../run")
 jump_state = NodePath("../jump")
 falling_state = NodePath("../falling")
 attack_state = NodePath("../attack")
 animation_name = "Idle"
 
-[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "falling_state", "attack_state")]
+[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "run_state", "jump_state", "falling_state", "attack_state")]
 script = ExtResource("5_xhr4h")
 idle_state = NodePath("../idle")
+run_state = NodePath("../run")
 jump_state = NodePath("../jump")
 falling_state = NodePath("../falling")
 attack_state = NodePath("../attack")
 animation_name = "Walk"
 
-[node name="run" type="Node" parent="state_machine"]
+[node name="run" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "falling_state", "attack_state")]
 script = ExtResource("8_6srnc")
+idle_state = NodePath("../idle")
+jump_state = NodePath("../jump")
+falling_state = NodePath("../falling")
+attack_state = NodePath("../attack")
+animation_name = "Run"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
-[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "falling_state")]
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "run_state", "falling_state")]
 script = ExtResource("6_owm4a")
 idle_state = NodePath("../idle")
 walk_state = NodePath("../walk")
+run_state = NodePath("../run")
 falling_state = NodePath("../falling")
 animation_name = "Jump"
 
-[node name="falling" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state")]
+[node name="falling" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "run_state")]
 script = ExtResource("7_8vq1g")
 idle_state = NodePath("../idle")
 walk_state = NodePath("../walk")
+run_state = NodePath("../run")
 animation_name = "Falling"
 
 [node name="attack" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "walk_state", "jump_state", "next_attack_state")]
