@@ -5,12 +5,17 @@ extends CharacterBody2D
 @onready var attack_collisions: Area2D = $attack_collisions
 @onready var state_machine = $state_machine
 
-# State variables
+#region State variables
+#Movement
 var move_speed: float = 1500
 var walk_speed: float = 1500
 var run_speed: float = 3000
-var jump_force: float = 3000
 var isRunning = false
+var jump_force: float = 3000
+#Coyote time
+var default_coyote_time: float = 0.1
+var coyote_time: float = default_coyote_time
+#endregion
 
 var list_attack_collisions: Dictionary = {}
 
@@ -51,9 +56,8 @@ func flip(direction: bool):
 				collision.position.x = abs(collision.position.x) * -1
 
 func set_running(run: bool):
+	isRunning = run
 	if run:
-		isRunning = true
 		move_speed = run_speed
 	else:
-		isRunning = false
 		move_speed = walk_speed

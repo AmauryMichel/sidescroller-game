@@ -13,7 +13,7 @@ func process_input(_event: InputEvent) -> State:
 		return run_state
 	if Input.is_action_just_pressed('attack'):
 		return attack_state
-	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
+	if Input.is_action_just_pressed('jump') and (parent.is_on_floor() || parent.coyote_time > 0):
 		return jump_state
 	return null
 
@@ -34,7 +34,12 @@ func process_physics(delta: float) -> State:
 	
 	parent.move_and_slide()
 	
+	#Give player time to jump after falling
 	if !parent.is_on_floor():
-		return falling_state
+		parent.coyote_time -= delta
+		if parent.coyote_time <= 0:
+			return falling_state
+	else: #Reset cooldown
+		parent.coyote_time = parent.default_coyote_time
 	
 	return null
