@@ -61,3 +61,6 @@ func set_running(run: bool):
 		move_speed = run_speed
 	else:
 		move_speed = walk_speed
+
+func enable_attack_collision(collision_name: String, disabled: bool):
+	list_attack_collisions[collision_name].disabled = disabled

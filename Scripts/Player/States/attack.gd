@@ -8,8 +8,6 @@ extends State
 
 @export var collision_name: String
 
-var attack_collision: CollisionShape2D
-
 var input_buffer
 var returned_state
 
@@ -21,12 +19,10 @@ func enter() -> void:
 	input_buffer = null
 	returned_state = null
 	
-	if (!attack_collision): #Get the collision linked to the attack
-		attack_collision = parent.list_attack_collisions[collision_name]
-	attack_collision.disabled = false
+	parent.enable_attack_collision(collision_name, false)
 
 func exit() -> void:
-	attack_collision.disabled = true
+	parent.enable_attack_collision(collision_name, true)
 	
 func process_input(_event: InputEvent) -> State:
 	#Buffer next input
@@ -48,6 +44,6 @@ func animation_finished():
 	else: 
 		returned_state = idle_state
 	
-	attack_collision.disabled = true
+	parent.enable_attack_collision(collision_name, true)
 	
 	return returned_state
