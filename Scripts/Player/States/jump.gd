@@ -12,6 +12,9 @@ func enter() -> void:
 func process_physics(delta: float) -> State:
 	handle_movement(delta)
 	
+	if parent.velocity.y > 0:
+		return falling_state
+	
 	if parent.is_on_floor():
 		if direction != 0:
 			if parent.isRunning:
