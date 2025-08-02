@@ -11,7 +11,7 @@ var move_speed: float = 1500
 var walk_speed: float = 1500
 var run_speed: float = 3000
 var isRunning = false
-var jump_force: float = 3000
+var jump_force: float = 4500
 #Coyote time
 var default_coyote_time: float = 0.1
 var coyote_time: float = default_coyote_time

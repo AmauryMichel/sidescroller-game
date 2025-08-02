@@ -10,10 +10,12 @@ func enter() -> void:
 	parent.velocity.y = -parent.jump_force
 
 func process_physics(delta: float) -> State:
-	handle_movement(delta)
+	# Variable jump height
+	if Input.is_action_just_released("jump"):
+		parent.velocity.y *= 0.75
 	
-	if parent.velocity.y > 0:
-		return falling_state
+	handle_vertical_movement(delta)
+	handle_horizontal_movement(delta)
 	
 	if parent.is_on_floor():
 		if direction != 0:
@@ -22,5 +24,8 @@ func process_physics(delta: float) -> State:
 			else:
 				return walk_state
 		return idle_state
+	
+	if parent.velocity.y > 0:
+		return falling_state
 	
 	return null

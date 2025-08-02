@@ -16,7 +16,8 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	handle_movement(delta)
+	handle_vertical_movement(delta)
+	handle_horizontal_movement(delta)
 	
 	if handle_coyote_time(delta):
 		return falling_state
