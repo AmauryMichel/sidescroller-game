@@ -1,8 +1,8 @@
 extends State_Movement
 
-@export var idle_state: State
 @export var walk_state: State
 @export var run_state: State
+@export var landing_state: State
 @export var falling_state: State
 
 func enter() -> void:
@@ -23,7 +23,7 @@ func process_physics(delta: float) -> State:
 				return run_state
 			else:
 				return walk_state
-		return idle_state
+		return landing_state
 	
 	if parent.velocity.y > 0:
 		return falling_state

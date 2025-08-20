@@ -1,8 +1,8 @@
 extends State_Movement
 
-@export var idle_state: State
 @export var walk_state: State
 @export var run_state: State
+@export var landing_state: State
 
 # To accelerate gravity when falling
 var air_time = 0.0
@@ -22,5 +22,7 @@ func process_physics(delta: float) -> State:
 		if direction != 0:
 			if parent.isRunning:
 				return run_state
-		return idle_state
+			else:
+				return walk_state
+		return landing_state
 	return null

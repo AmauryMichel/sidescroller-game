@@ -6,7 +6,7 @@ var direction
 func handle_vertical_movement(delta: float):
 	parent.velocity.y += gravity * delta
 
-func handle_horizontal_movement(delta: float):	
+func handle_horizontal_movement(_delta: float):	
 	direction = Input.get_axis("move_left", "move_right")
 	
 	if direction: #If the character is moving
