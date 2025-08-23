@@ -3,11 +3,11 @@ extends State_Movement
 @export var idle_state: State
 @export var jump_state: State
 @export var falling_state: State
-@export var attack_state: State
+@export var dash_attack_state: State
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('attack'):
-		return attack_state
+		return dash_attack_state
 	if Input.is_action_just_pressed('jump') and (parent.is_on_floor() || parent.coyote_time > 0):
 		return jump_state
 	return null

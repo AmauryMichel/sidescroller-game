@@ -11,6 +11,11 @@ func init(parent: Player) -> void:
 		if child is State:
 			child.parent = parent
 			states[child.name.to_lower()] = child
+		# If Node is a folder of States
+		elif child.get_child_count() != 0:
+			for grandchild in child.get_children():
+				grandchild.parent = parent
+				states[grandchild.name.to_lower()] = grandchild
 
 	# Initialize to the default state
 	change_state(starting_state)
