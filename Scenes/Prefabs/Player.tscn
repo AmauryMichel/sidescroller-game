@@ -1,8 +1,8 @@
-[gd_scene load_steps=48 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=51 format=3 uid="uid://p0y8p6yvvw2h"]
 
 [ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
 [ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Movement Sheet.png" id="2_212jg"]
-[ext_resource type="Script" uid="uid://3x31pcdt0ekm" path="res://Scripts/Component/hurtbox.gd" id="3_p8iar"]
+[ext_resource type="Script" uid="uid://3x31pcdt0ekm" path="res://Scripts/Component/hitbox.gd" id="3_p8iar"]
 [ext_resource type="Texture2D" uid="uid://wfquttjvo5tq" path="res://Assets/Sprites/Player Attack Sheet.png" id="3_r4csm"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_rhohb"]
 [ext_resource type="Script" uid="uid://ilgqklvc3not" path="res://Scripts/Player/States/idle.gd" id="4_4pem1"]
@@ -282,8 +282,17 @@ radius = 162.631
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8iar"]
 size = Vector2(192, 752)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_42ksm"]
-size = Vector2(321, 123)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avmds"]
+size = Vector2(268.25, 239.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15610"]
+size = Vector2(321, 154.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7f1t"]
+size = Vector2(321, 154.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7myqs"]
+size = Vector2(219.5, 654)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -293,7 +302,7 @@ script = ExtResource("1_ufpo8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"attack4"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
@@ -314,23 +323,23 @@ collision_mask = 64
 script = ExtResource("3_p8iar")
 
 [node name="attack1" type="CollisionShape2D" parent="attack_collisions"]
-position = Vector2(260.5, -540)
-shape = SubResource("RectangleShape2D_42ksm")
+position = Vector2(300, -533)
+shape = SubResource("RectangleShape2D_avmds")
 disabled = true
 
 [node name="attack2" type="CollisionShape2D" parent="attack_collisions"]
-position = Vector2(324, -541)
-shape = SubResource("RectangleShape2D_42ksm")
+position = Vector2(392, -505.25)
+shape = SubResource("RectangleShape2D_15610")
 disabled = true
 
 [node name="attack3" type="CollisionShape2D" parent="attack_collisions"]
-position = Vector2(324, -541)
-shape = SubResource("RectangleShape2D_42ksm")
+position = Vector2(293, -526)
+shape = SubResource("RectangleShape2D_j7f1t")
 disabled = true
 
 [node name="attack4" type="CollisionShape2D" parent="attack_collisions"]
-position = Vector2(324, -541)
-shape = SubResource("RectangleShape2D_42ksm")
+position = Vector2(302.25, -358)
+shape = SubResource("RectangleShape2D_7myqs")
 disabled = true
 
 [node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_rhohb")]
