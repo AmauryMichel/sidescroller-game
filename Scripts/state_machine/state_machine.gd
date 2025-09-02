@@ -53,7 +53,7 @@ func force_change_state(new_state_string : String):
 	current_state = new_state
 	new_state.enter()
 
-func _on_animated_sprite_2d_animation_finished() -> void:
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	var new_state = current_state.animation_finished()
 	if new_state:
 		change_state(new_state)

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_collisions: Area2D = $attack_collisions
 @onready var state_machine = $state_machine
 
@@ -17,17 +18,10 @@ var default_coyote_time: float = 0.1
 var coyote_time: float = default_coyote_time
 #endregion
 
-var list_attack_collisions: Dictionary = {}
-
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	state_machine.init(self)
-	
-	# Get a list of all the attack collisions
-	for collision in attack_collisions.get_children():
-		if collision is CollisionShape2D:
-			list_attack_collisions[collision.name.to_lower()] = collision
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed('run') && is_on_floor():
@@ -61,6 +55,3 @@ func set_running(run: bool):
 		move_speed = run_speed
 	else:
 		move_speed = walk_speed
-
-func enable_attack_collision(collision_name: String, disabled: bool):
-	list_attack_collisions[collision_name].disabled = disabled

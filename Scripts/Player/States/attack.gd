@@ -6,8 +6,6 @@ extends State
 
 @export var next_attack_state: State
 
-@export var collision_name: String
-
 var input_buffer
 var returned_state
 
@@ -18,21 +16,14 @@ func enter() -> void:
 	
 	input_buffer = null
 	returned_state = null
-	
-	parent.enable_attack_collision(collision_name, false)
 
-func exit() -> void:
-	parent.enable_attack_collision(collision_name, true)
-	
 func process_input(_event: InputEvent) -> State:
 	#Buffer next input
 	if Input.is_action_just_pressed('attack'):
 		input_buffer = "attack"
-		#TODO Switch to next attack before the end of the animation
 	elif Input.is_action_just_pressed('jump'):
 		input_buffer = "jump"
 	return null
-
 
 func animation_finished():
 	if next_attack_state && input_buffer == "attack":
@@ -43,7 +34,5 @@ func animation_finished():
 		returned_state = walk_state
 	else: 
 		returned_state = idle_state
-	
-	parent.enable_attack_collision(collision_name, true)
-	
+		
 	return returned_state
