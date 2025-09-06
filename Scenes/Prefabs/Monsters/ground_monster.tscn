@@ -1,0 +1,194 @@
+[gd_scene load_steps=18 format=3 uid="uid://bthpm0n4d72d2"]
+
+[ext_resource type="Script" uid="uid://ui3es1duekp0" path="res://Scripts/Monsters/Ground Monster/ground_monster.gd" id="1_ekxj3"]
+[ext_resource type="Texture2D" uid="uid://cc5hgbve43mad" path="res://Assets/Sprites/Ground Monster Sprite Sheet.png" id="2_ekxj3"]
+[ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_xcj1l"]
+[ext_resource type="Script" uid="uid://d2c16tqptax0l" path="res://Scripts/Monsters/Ground Monster/States/idle.gd" id="4_6ehe8"]
+[ext_resource type="Script" uid="uid://byui1fgsnd650" path="res://Scripts/state_machine/state.gd" id="4_humqa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcj1l"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgknr"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(0, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_humqa"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(1024, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ehe8"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(2048, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn3r7"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(3072, 1024, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ytpux"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcj1l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_hgknr")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_humqa")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_6ehe8")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_yn3r7")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 24.0
+}]
+
+[sub_resource type="Animation" id="Animation_5btwl"]
+length = 0.0416667
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle"]
+}
+
+[sub_resource type="Animation" id="Animation_6iqhn"]
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["walking"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_seb3o"]
+_data = {
+&"idle": SubResource("Animation_5btwl"),
+&"walking": SubResource("Animation_6iqhn")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_40drx"]
+radius = 162.631
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dccm2"]
+size = Vector2(334, 996)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wp1k5"]
+radius = 1099.3
+
+[node name="Ground Monster" type="CharacterBody2D"]
+script = ExtResource("1_ekxj3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -512)
+sprite_frames = SubResource("SpriteFrames_ytpux")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ground_collision")
+libraries = {
+&"": SubResource("AnimationLibrary_seb3o")
+}
+
+[node name="ground_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -167)
+shape = SubResource("CircleShape2D_40drx")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -512)
+collision_layer = 64
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(3, 13)
+shape = SubResource("RectangleShape2D_dccm2")
+
+[node name="detection_area" type="Area2D" parent="."]
+visible = false
+collision_layer = 128
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+shape = SubResource("CircleShape2D_wp1k5")
+
+[node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_xcj1l")]
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state")]
+script = ExtResource("4_6ehe8")
+walk_state = NodePath("../walk")
+animation_name = "idle"
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[node name="walk" type="Node" parent="state_machine"]
+script = ExtResource("4_humqa")
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[node name="attack" type="Node" parent="state_machine"]
+script = ExtResource("4_humqa")
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[node name="damaged" type="Node" parent="state_machine"]
+script = ExtResource("4_humqa")
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[node name="dead" type="Node" parent="state_machine"]
+script = ExtResource("4_humqa")
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[connection signal="area_shape_entered" from="Hurtbox" to="." method="_on_hitbox_area_shape_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="area_entered" from="detection_area" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_exited" from="detection_area" to="." method="_on_detection_area_area_exited"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

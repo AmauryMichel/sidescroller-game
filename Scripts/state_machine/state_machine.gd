@@ -6,7 +6,7 @@ var current_state: State
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
-func init(parent: Player) -> void:
+func init(parent: CharacterBody2D) -> void:
 	for child in get_children():
 		if child is State:
 			child.parent = parent

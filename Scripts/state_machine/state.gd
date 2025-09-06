@@ -6,7 +6,7 @@ extends Node
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 ## Hold a reference to the parent so that it can be controlled by the state
-var parent: Player
+var parent: CharacterBody2D
 
 func enter() -> void:
 	parent.animation_player.play(animation_name)

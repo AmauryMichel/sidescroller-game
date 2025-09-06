@@ -18,6 +18,7 @@ var default_coyote_time: float = 0.1
 var coyote_time: float = default_coyote_time
 #endregion
 
+#region State Machine Functions
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+#endregion
 
 #Flip sprites and collisions
 func flip(direction: bool):
