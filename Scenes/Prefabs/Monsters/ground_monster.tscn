@@ -1,14 +1,19 @@
-[gd_scene load_steps=18 format=3 uid="uid://bthpm0n4d72d2"]
+[gd_scene load_steps=19 format=3 uid="uid://bthpm0n4d72d2"]
 
 [ext_resource type="Script" uid="uid://ui3es1duekp0" path="res://Scripts/Monsters/Ground Monster/ground_monster.gd" id="1_ekxj3"]
 [ext_resource type="Texture2D" uid="uid://cc5hgbve43mad" path="res://Assets/Sprites/Ground Monster Sprite Sheet.png" id="2_ekxj3"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_xcj1l"]
 [ext_resource type="Script" uid="uid://d2c16tqptax0l" path="res://Scripts/Monsters/Ground Monster/States/idle.gd" id="4_6ehe8"]
 [ext_resource type="Script" uid="uid://byui1fgsnd650" path="res://Scripts/state_machine/state.gd" id="4_humqa"]
+[ext_resource type="Script" uid="uid://byka4qy4qpdf3" path="res://Scripts/Monsters/Ground Monster/States/walk.gd" id="5_6iqhn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcj1l"]
 atlas = ExtResource("2_ekxj3")
 region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn3r7"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(3072, 1024, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgknr"]
 atlas = ExtResource("2_ekxj3")
@@ -22,10 +27,6 @@ region = Rect2(1024, 1024, 1024, 1024)
 atlas = ExtResource("2_ekxj3")
 region = Rect2(2048, 1024, 1024, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yn3r7"]
-atlas = ExtResource("2_ekxj3")
-region = Rect2(3072, 1024, 1024, 1024)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ytpux"]
 animations = [{
 "frames": [{
@@ -38,6 +39,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 6.0,
+"texture": SubResource("AtlasTexture_yn3r7")
+}, {
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_hgknr")
 }, {
 "duration": 6.0,
@@ -45,12 +49,9 @@ animations = [{
 }, {
 "duration": 6.0,
 "texture": SubResource("AtlasTexture_6ehe8")
-}, {
-"duration": 6.0,
-"texture": SubResource("AtlasTexture_yn3r7")
 }],
 "loop": true,
-"name": &"walking",
+"name": &"walk",
 "speed": 24.0
 }]
 
@@ -84,6 +85,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_6iqhn"]
+resource_name = "walk"
 loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
@@ -108,13 +110,13 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["walking"]
+"values": ["walk"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_seb3o"]
 _data = {
 &"idle": SubResource("Animation_5btwl"),
-&"walking": SubResource("Animation_6iqhn")
+&"walk": SubResource("Animation_6iqhn")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40drx"]
@@ -132,7 +134,7 @@ script = ExtResource("1_ekxj3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_ytpux")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -164,14 +166,18 @@ shape = SubResource("CircleShape2D_wp1k5")
 [node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_xcj1l")]
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state", "attack_state")]
 script = ExtResource("4_6ehe8")
 walk_state = NodePath("../walk")
+attack_state = NodePath("../walk")
 animation_name = "idle"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
-[node name="walk" type="Node" parent="state_machine"]
-script = ExtResource("4_humqa")
+[node name="walk" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "attack_state")]
+script = ExtResource("5_6iqhn")
+idle_state = NodePath("../idle")
+attack_state = NodePath("../attack")
+animation_name = "walk"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [node name="attack" type="Node" parent="state_machine"]

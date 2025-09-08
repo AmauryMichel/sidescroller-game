@@ -5,19 +5,15 @@ extends CharacterBody2D
 @onready var state_machine: Node = $state_machine
 
 @export var health: int = 4
-@export var speed = 40
+@export var move_speed: float = 1000
 
+var current_direction: bool
 var player: Node2D = null
 var isAttacking: bool = false
 
 #region State Machine Functions
 func _ready() -> void:
-	# Initialize the state machine, passing a reference of the player to the states,
-	# that way they can move and react accordingly
 	state_machine.init(self)
-
-func _unhandled_input(event: InputEvent) -> void:	
-	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
@@ -25,6 +21,11 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 #endregion
+
+#Flip sprites and collisions
+func flip(direction: bool):
+	current_direction = direction
+	animated_sprite.flip_h = direction
 
 func take_damage(damage: int):
 	health -= damage
