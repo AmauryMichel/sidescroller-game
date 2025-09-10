@@ -15,6 +15,9 @@ func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()
 	
+	if parent.is_static:
+		return null
+	
 	idle_timer -= delta
 	if idle_timer <= 0:
 		parent.flip(!parent.current_direction)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=65 format=3 uid="uid://p0y8p6yvvw2h"]
 
 [ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
 [ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Movement Sheet.png" id="2_212jg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://wfquttjvo5tq" path="res://Assets/Sprites/Player Attack Sheet.png" id="3_r4csm"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_rhohb"]
 [ext_resource type="Script" uid="uid://ilgqklvc3not" path="res://Scripts/Player/States/idle.gd" id="4_4pem1"]
+[ext_resource type="Script" uid="uid://x5df8oalrox" path="res://Scripts/Component/hitbox_collision.gd" id="5_7myqs"]
 [ext_resource type="Script" uid="uid://drftccj11r5d0" path="res://Scripts/Player/States/walk.gd" id="5_xhr4h"]
 [ext_resource type="Script" uid="uid://le21kpmc3dam" path="res://Scripts/Player/States/jump.gd" id="6_owm4a"]
 [ext_resource type="Script" uid="uid://k67yjbsscxcd" path="res://Scripts/Player/States/falling.gd" id="7_8vq1g"]
@@ -711,10 +712,10 @@ radius = 162.631
 size = Vector2(192, 752)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avmds"]
-size = Vector2(268.25, 239.5)
+size = Vector2(225, 257.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15610"]
-size = Vector2(321, 154.5)
+size = Vector2(321, 157)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7f1t"]
 size = Vector2(321, 154.5)
@@ -736,7 +737,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"attack4"
+animation = &"attack2"
 autoplay = "idle"
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
@@ -757,24 +758,29 @@ collision_mask = 64
 script = ExtResource("3_p8iar")
 
 [node name="attack1" type="CollisionShape2D" parent="attack_collisions"]
-position = Vector2(300, -533)
+position = Vector2(303.5, -536)
 shape = SubResource("RectangleShape2D_avmds")
 disabled = true
+script = ExtResource("5_7myqs")
 
 [node name="attack2" type="CollisionShape2D" parent="attack_collisions"]
-position = Vector2(392, -505.25)
+position = Vector2(392, -506.5)
 shape = SubResource("RectangleShape2D_15610")
 disabled = true
+script = ExtResource("5_7myqs")
+damage = 3
 
 [node name="attack3" type="CollisionShape2D" parent="attack_collisions"]
 position = Vector2(293, -526)
 shape = SubResource("RectangleShape2D_j7f1t")
 disabled = true
+script = ExtResource("5_7myqs")
 
 [node name="attack4" type="CollisionShape2D" parent="attack_collisions"]
 position = Vector2(302.25, -358)
 shape = SubResource("RectangleShape2D_7myqs")
 disabled = true
+script = ExtResource("5_7myqs")
 
 [node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_rhohb")]
 starting_state = NodePath("idle")
@@ -879,5 +885,4 @@ animation_name = "dash_attack"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="state_machine" method="_on_animation_player_animation_finished"]
-[connection signal="area_entered" from="attack_collisions" to="attack_collisions" method="_on_area_entered"]
 [connection signal="area_shape_entered" from="attack_collisions" to="attack_collisions" method="_on_area_shape_entered"]

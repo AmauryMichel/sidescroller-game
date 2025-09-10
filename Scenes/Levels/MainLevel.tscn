@@ -42,7 +42,7 @@ tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgABAAAAAAABAP//AgAAAAA
 tile_set = SubResource("TileSet_7rqgy")
 
 [node name="Player" parent="." instance=ExtResource("2_7rqgy")]
-position = Vector2(4600, -655)
+position = Vector2(5326, -1836)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-5, -548)
@@ -57,3 +57,4 @@ position = Vector2(0, 72)
 
 [node name="Ground Monster" parent="." instance=ExtResource("4_xx3f3")]
 position = Vector2(5923, -1990)
+is_static = true

@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @export var health: int = 4
 @export var move_speed: float = 1000
+@export var is_static: bool = false
 
 var current_direction: bool
 var player: Node2D = null
