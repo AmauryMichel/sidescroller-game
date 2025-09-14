@@ -6,4 +6,4 @@ func _on_area_shape_entered(_area_rid: RID, enteredArea: Area2D, _area_shape_ind
 		return
 		
 	if enteredArea.owner.has_method("take_damage"):
-		enteredArea.owner.take_damage(local_hitbox.damage)
+		enteredArea.owner.take_damage(local_hitbox.damage, local_hitbox.hitstun)

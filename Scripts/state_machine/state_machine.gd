@@ -45,9 +45,7 @@ func process_frame(delta: float) -> void:
 	if new_state:
 		change_state(new_state)
 
-func force_change_state(new_state_string : String):
-	var new_state = states.get(new_state_string.to_lower())
-	
+func force_change_state(new_state: State):
 	current_state.exit()
 	
 	current_state = new_state
