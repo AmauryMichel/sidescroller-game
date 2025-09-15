@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var state_machine: Node = $state_machine
 
+@onready var hurtbox: Area2D = $Hurtbox
+
 @export var health: int = 4
 @export var move_speed: float = 1000
 @export var is_static: bool = false
@@ -37,9 +39,9 @@ func flip(direction: bool):
 func take_damage(damage: int, attack_hitstun: float):
 	health -= damage
 	
-	#Kill the mob if it doesn't have any health left
 	if health <= 0:
-		self.queue_free()
+		hurtbox.set_deferred("monitorable", false)
+		state_machine.force_change_state(dead_state)
 	else: 
 		hitstun = attack_hitstun
 		state_machine.force_change_state(damaged_state)

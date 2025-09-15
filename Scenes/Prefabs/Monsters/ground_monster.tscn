@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bthpm0n4d72d2"]
+[gd_scene load_steps=25 format=3 uid="uid://bthpm0n4d72d2"]
 
 [ext_resource type="Script" uid="uid://ui3es1duekp0" path="res://Scripts/Monsters/Ground Monster/ground_monster.gd" id="1_ekxj3"]
 [ext_resource type="Texture2D" uid="uid://cc5hgbve43mad" path="res://Assets/Sprites/Ground Monster Sprite Sheet.png" id="2_ekxj3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://byui1fgsnd650" path="res://Scripts/state_machine/state.gd" id="4_humqa"]
 [ext_resource type="Script" uid="uid://byka4qy4qpdf3" path="res://Scripts/Monsters/Ground Monster/States/walk.gd" id="5_6iqhn"]
 [ext_resource type="Script" uid="uid://h7s87co2s4k4" path="res://Scripts/Monsters/Ground Monster/States/damaged.gd" id="7_seb3o"]
+[ext_resource type="Script" uid="uid://cpc8jxmocx177" path="res://Scripts/Monsters/Ground Monster/States/dead.gd" id="8_acq4x"]
 
 [sub_resource type="Animation" id="Animation_seb3o"]
 length = 0.0416667
@@ -38,8 +39,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_acq4x"]
-length = 0.001
-loop_mode = 1
+length = 0.333333
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -48,10 +48,10 @@ tracks/0/path = NodePath("../AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -171,10 +171,10 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 16.0,
 "texture": SubResource("AtlasTexture_acq4x")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 24.0
 }, {
@@ -217,6 +217,7 @@ radius = 1099.3
 collision_layer = 16
 collision_mask = 256
 script = ExtResource("1_ekxj3")
+health = 1
 damaged_state = NodePath("state_machine/damaged")
 dead_state = NodePath("state_machine/dead")
 
@@ -229,9 +230,8 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1024)
 sprite_frames = SubResource("SpriteFrames_ytpux")
-animation = &"walk"
+animation = &"dead"
 autoplay = "idle"
-frame_progress = 0.713137
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -167)
@@ -282,9 +282,11 @@ animation_name = "damaged"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [node name="dead" type="Node" parent="state_machine"]
-script = ExtResource("4_humqa")
+script = ExtResource("8_acq4x")
+animation_name = "dead"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
+[connection signal="animation_finished" from="AnimationPlayer" to="state_machine" method="_on_animation_player_animation_finished"]
 [connection signal="area_shape_entered" from="Hurtbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="area_entered" from="detection_area" to="." method="_on_detection_area_area_entered"]

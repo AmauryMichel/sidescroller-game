@@ -42,7 +42,7 @@ tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgABAAAAAAABAP//AgAAAAA
 tile_set = SubResource("TileSet_7rqgy")
 
 [node name="Player" parent="." instance=ExtResource("2_7rqgy")]
-position = Vector2(5326, -1836)
+position = Vector2(5451, -1798)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-5, -548)
@@ -52,8 +52,8 @@ limit_bottom = 120
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Killzone" parent="." instance=ExtResource("4_7rqgy")]
-position = Vector2(0, 72)
-
 [node name="Ground Monster" parent="." instance=ExtResource("4_xx3f3")]
 position = Vector2(5923, -1990)
+
+[node name="Killzone" parent="." instance=ExtResource("4_7rqgy")]
+position = Vector2(0, 72)
