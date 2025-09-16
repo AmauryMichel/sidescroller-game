@@ -36,8 +36,9 @@ func flip(direction: bool):
 	current_direction = direction
 	animated_sprite.flip_h = direction
 
-func take_damage(damage: int, attack_hitstun: float):
+func take_damage(damage: int, attack_hitstun: float, direction: bool):
 	health -= damage
+	flip(!direction)
 	
 	if health <= 0:
 		hurtbox.set_deferred("monitorable", false)
