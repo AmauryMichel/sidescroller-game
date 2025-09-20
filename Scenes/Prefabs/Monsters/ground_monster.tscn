@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bthpm0n4d72d2"]
+[gd_scene load_steps=29 format=3 uid="uid://bthpm0n4d72d2"]
 
 [ext_resource type="Script" uid="uid://ui3es1duekp0" path="res://Scripts/Monsters/Ground Monster/ground_monster.gd" id="1_ekxj3"]
 [ext_resource type="Texture2D" uid="uid://cc5hgbve43mad" path="res://Assets/Sprites/Ground Monster Sprite Sheet.png" id="2_ekxj3"]
@@ -132,13 +132,29 @@ _data = {
 &"walk": SubResource("Animation_6iqhn")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_seb3o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_acq4x"]
 atlas = ExtResource("2_ekxj3")
 region = Rect2(0, 4096, 2048, 2048)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_acq4x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8pbb"]
 atlas = ExtResource("2_ekxj3")
 region = Rect2(2048, 4096, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dhcp"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(4096, 4096, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olq2w"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(6144, 4096, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibdni"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(0, 6144, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kqt5"]
+atlas = ExtResource("2_ekxj3")
+region = Rect2(2048, 6144, 2048, 2048)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e65vh"]
 atlas = ExtResource("2_ekxj3")
@@ -163,8 +179,25 @@ region = Rect2(4096, 2048, 2048, 2048)
 [sub_resource type="SpriteFrames" id="SpriteFrames_ytpux"]
 animations = [{
 "frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_acq4x")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_m8pbb")
+}, {
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_1dhcp")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_olq2w")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 24.0
+}, {
+"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_seb3o")
+"texture": SubResource("AtlasTexture_ibdni")
 }],
 "loop": true,
 "name": &"damaged",
@@ -172,7 +205,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 16.0,
-"texture": SubResource("AtlasTexture_acq4x")
+"texture": SubResource("AtlasTexture_8kqt5")
 }],
 "loop": false,
 "name": &"dead",
@@ -229,7 +262,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1024)
 sprite_frames = SubResource("SpriteFrames_ytpux")
-animation = &"dead"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
