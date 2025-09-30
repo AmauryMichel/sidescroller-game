@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=67 format=3 uid="uid://p0y8p6yvvw2h"]
 
 [ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
 [ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Movement Sheet.png" id="2_212jg"]
@@ -256,7 +256,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_4logw"]
-length = 0.166667
+length = 0.0416667
 loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
@@ -340,6 +340,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["jump"]
+}
+
+[sub_resource type="Animation" id="Animation_ep2h5"]
+length = 0.25
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["jump_transition"]
 }
 
 [sub_resource type="Animation" id="Animation_kl4ka"]
@@ -439,6 +467,7 @@ _data = {
 &"falling": SubResource("Animation_4logw"),
 &"idle": SubResource("Animation_1km8o"),
 &"jump": SubResource("Animation_i60x6"),
+&"jump_transition": SubResource("Animation_ep2h5"),
 &"landing": SubResource("Animation_kl4ka"),
 &"run": SubResource("Animation_dc1uv"),
 &"walk": SubResource("Animation_rvhp4")
@@ -512,9 +541,9 @@ region = Rect2(3072, 3072, 1024, 1024)
 atlas = ExtResource("3_r4csm")
 region = Rect2(0, 0, 1024, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p8iar"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_27c8s"]
 atlas = ExtResource("2_212jg")
-region = Rect2(1024, 3072, 1024, 1024)
+region = Rect2(2048, 3072, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4csm"]
 atlas = ExtResource("2_212jg")
@@ -524,9 +553,13 @@ region = Rect2(0, 0, 1024, 1024)
 atlas = ExtResource("2_212jg")
 region = Rect2(0, 3072, 1024, 1024)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fypre"]
+atlas = ExtResource("2_212jg")
+region = Rect2(1024, 3072, 1024, 1024)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7myqs"]
 atlas = ExtResource("2_212jg")
-region = Rect2(2048, 3072, 1024, 1024)
+region = Rect2(3072, 3072, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1km8o"]
 atlas = ExtResource("2_212jg")
@@ -639,8 +672,8 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
-"duration": 4.0,
-"texture": SubResource("AtlasTexture_p8iar")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27c8s")
 }],
 "loop": true,
 "name": &"falling",
@@ -660,6 +693,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_fypre")
+}],
+"loop": false,
+"name": &"jump_transition",
 "speed": 24.0
 }, {
 "frames": [{
@@ -738,7 +779,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"attack2"
+animation = &"jump_transition"
 autoplay = "idle"
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]

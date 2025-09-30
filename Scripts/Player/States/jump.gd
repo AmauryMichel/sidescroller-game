@@ -5,6 +5,8 @@ extends State_Movement
 @export var landing_state: State
 @export var falling_state: State
 
+var transition_animation: String = "jump_transition"
+
 func enter() -> void:
 	super()
 	parent.velocity.y = -parent.jump_force
@@ -26,6 +28,9 @@ func process_physics(delta: float) -> State:
 		return landing_state
 	
 	if parent.velocity.y > 0:
-		return falling_state
+		parent.animation_player.play(transition_animation)
 	
 	return null
+
+func animation_finished():
+	return falling_state
