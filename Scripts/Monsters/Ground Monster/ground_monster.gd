@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var state_machine: Node = $state_machine
 
-@onready var hurtbox: Area2D = $Hurtbox
+@onready var hurtbox_area: Area2D = $hurtbox_area
 
 @export var health: int = 4
 @export var move_speed: float = 1000
@@ -17,7 +17,7 @@ extends CharacterBody2D
 
 var current_direction: bool
 var player: Node2D = null
-var isAttacking: bool = false
+var is_attacking: bool = false
 var hitstun: float = 0
 
 #region State Machine Functions
@@ -41,8 +41,16 @@ func take_damage(damage: int, attack_hitstun: float, direction: bool):
 	flip(!direction)
 	
 	if health <= 0:
-		hurtbox.set_deferred("monitorable", false)
+		hurtbox_area.set_deferred("monitorable", false)
 		state_machine.force_change_state(dead_state)
 	else: 
 		hitstun = attack_hitstun
 		state_machine.force_change_state(damaged_state)
+
+func _on_detection_area_area_entered(area: Area2D) -> void:
+	player = area.get_parent()
+	is_attacking = true
+
+func _on_detection_area_area_exited(_area: Area2D) -> void:
+	player = null
+	is_attacking = false
