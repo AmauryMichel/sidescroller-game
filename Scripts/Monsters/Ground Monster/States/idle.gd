@@ -20,7 +20,7 @@ func process_physics(delta: float) -> State:
 	
 	idle_timer -= delta
 	if idle_timer <= 0:
-		parent.flip(!parent.current_direction)
+		parent.flip(!parent.is_flipped)
 		return walk_state
 	
 	return null

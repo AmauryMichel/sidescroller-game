@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -400,6 +400,7 @@ disabled = true
 [node name="attack" type="CollisionShape2D" parent="attack_collisions"]
 position = Vector2(463, -547)
 shape = SubResource("RectangleShape2D_m8pbb")
+disabled = true
 script = ExtResource("3_e65vh")
 metadata/_custom_type_script = "uid://x5df8oalrox"
 

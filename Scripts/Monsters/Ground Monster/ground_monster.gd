@@ -15,7 +15,7 @@ extends CharacterBody2D
 @export var dead_state: State
 #endregion
 
-var current_direction: bool
+var is_flipped: bool
 var player: Node2D = null
 var is_attacking: bool = false
 var hitstun: float = 0
@@ -32,9 +32,11 @@ func _process(delta: float) -> void:
 #endregion
 
 #Flip sprites and collisions
-func flip(direction: bool):
-	current_direction = direction
-	animated_sprite.flip_h = direction
+func flip(new_flip: bool):
+	if new_flip == is_flipped:
+		return
+	is_flipped = new_flip
+	self.scale.x *= -1
 
 func take_damage(damage: int, attack_hitstun: float, direction: bool):
 	health -= damage

@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 #region State variables
 #Movement
+var is_flipped = self.scale.x < 0
 var move_speed: float = 1500
 var walk_speed: float = 1500
 var run_speed: float = 3000
@@ -41,15 +42,11 @@ func _process(delta: float) -> void:
 #endregion
 
 #Flip sprites and collisions
-func flip(direction: bool):
-	animated_sprite.flip_h = direction
-	
-	for collision in attack_collisions.get_children():
-		if collision is CollisionShape2D:
-			if !direction:
-				collision.position.x = abs(collision.position.x)
-			else:
-				collision.position.x = abs(collision.position.x) * -1
+func flip(new_flip: bool):
+	if new_flip == is_flipped:
+		return
+	is_flipped = new_flip
+	self.scale.x *= -1
 
 func set_running(run: bool):
 	isRunning = run
