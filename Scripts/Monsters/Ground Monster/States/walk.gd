@@ -13,15 +13,13 @@ func enter() -> void:
 
 func process_physics(delta: float) -> State:
 	walk_timer -= delta
-	if !parent.player:
-		if walk_timer <= 0:
-			return idle_state
-	else:
+	if parent.player:
 		distance_from_player = parent.player.position.x - parent.position.x
+		parent.flip(distance_from_player < 0) # Always look at the player	
 		if abs(distance_from_player) < 500:
-			return idle_state
-		# Always look at the player
-		parent.flip(distance_from_player < 0)
+			return attack_state
+	elif walk_timer <= 0:
+		return idle_state
 	
 	parent.velocity.y += gravity * delta
 	

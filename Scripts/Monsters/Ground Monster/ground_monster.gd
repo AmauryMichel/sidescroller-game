@@ -13,11 +13,11 @@ extends CharacterBody2D
 #region States
 @export var damaged_state: State
 @export var dead_state: State
+var previous_state: State
 #endregion
 
 var is_flipped: bool
 var player: Node2D = null
-var is_attacking: bool = false
 var hitstun: float = 0
 
 #region State Machine Functions
@@ -51,8 +51,6 @@ func take_damage(damage: int, attack_hitstun: float, direction: bool):
 
 func _on_detection_area_area_entered(area: Area2D) -> void:
 	player = area.get_parent()
-	is_attacking = true
 
 func _on_detection_area_area_exited(_area: Area2D) -> void:
 	player = null
-	is_attacking = false

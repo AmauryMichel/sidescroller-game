@@ -51,7 +51,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_0j735"]
 length = 0.791667
-loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -298,7 +297,7 @@ animations = [{
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_olq2w")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 24.0
 }, {
@@ -375,7 +374,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1024)
 sprite_frames = SubResource("SpriteFrames_ytpux")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
@@ -419,7 +418,7 @@ starting_state = NodePath("idle")
 [node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state", "attack_state")]
 script = ExtResource("4_6ehe8")
 walk_state = NodePath("../walk")
-attack_state = NodePath("../walk")
+attack_state = NodePath("../attack")
 animation_name = "idle"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
@@ -430,8 +429,9 @@ attack_state = NodePath("../attack")
 animation_name = "walk"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
-[node name="attack" type="Node" parent="state_machine"]
+[node name="attack" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("7_6bn2f")
+idle_state = NodePath("../idle")
 animation_name = "attack"
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 

@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 #region State variables
 #Movement
+var previous_state: State
 var is_flipped = self.scale.x < 0
 var move_speed: float = 1500
 var walk_speed: float = 1500

@@ -2,7 +2,7 @@ extends State
 
 func enter() -> void:
 	super()
-	parent.velocity = Vector2(1 if parent.current_direction else -1, -1) * 1500
+	parent.velocity = Vector2(1 if parent.is_flipped else -1, -1) * 1500
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta

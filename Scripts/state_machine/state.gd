@@ -12,6 +12,7 @@ func enter() -> void:
 	parent.animation_player.play(animation_name)
 
 func exit() -> void:
+	parent.previous_state = self
 	pass
 
 func process_input(_event: InputEvent) -> State:
