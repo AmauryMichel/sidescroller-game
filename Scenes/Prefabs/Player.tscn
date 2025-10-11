@@ -1,7 +1,8 @@
-[gd_scene load_steps=67 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=72 format=3 uid="uid://p0y8p6yvvw2h"]
 
 [ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
 [ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Movement Sheet.png" id="2_212jg"]
+[ext_resource type="Texture2D" uid="uid://bp05a2abs7vlt" path="res://Assets/Sprites/Player Damaged Sheet.png" id="3_15610"]
 [ext_resource type="Script" uid="uid://3x31pcdt0ekm" path="res://Scripts/Component/hitbox.gd" id="3_p8iar"]
 [ext_resource type="Texture2D" uid="uid://wfquttjvo5tq" path="res://Assets/Sprites/Player Attack Sheet.png" id="3_r4csm"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_rhohb"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cn4qk1ad8tn5w" path="res://Scripts/Player/States/run.gd" id="8_6srnc"]
 [ext_resource type="Script" uid="uid://cfx05ytdma5x6" path="res://Scripts/Player/States/attack.gd" id="8_o0cdc"]
 [ext_resource type="Script" uid="uid://byui1fgsnd650" path="res://Scripts/state_machine/state.gd" id="9_avmds"]
+[ext_resource type="Script" uid="uid://cnhlxft4my3jy" path="res://Scripts/Player/States/damaged.gd" id="9_j7f1t"]
 [ext_resource type="Script" uid="uid://couhj34cemvam" path="res://Scripts/Player/States/landing.gd" id="11_7vt35"]
 [ext_resource type="Script" uid="uid://b4ylujtlhn17x" path="res://Scripts/Player/States/dash_attack.gd" id="12_7lrdb"]
 
@@ -61,6 +63,18 @@ tracks/3/path = NodePath("../attack_collisions/attack4:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../hurtbox_area:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -222,6 +236,46 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.166667, 0.541667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ley4d"]
+length = 0.25
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["damaged"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../hurtbox_area:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -463,6 +517,7 @@ _data = {
 &"attack2": SubResource("Animation_7myqs"),
 &"attack3": SubResource("Animation_15610"),
 &"attack4": SubResource("Animation_j7f1t"),
+&"damaged": SubResource("Animation_ley4d"),
 &"dash_attack": SubResource("Animation_fm7cf"),
 &"falling": SubResource("Animation_4logw"),
 &"idle": SubResource("Animation_1km8o"),
@@ -536,6 +591,14 @@ region = Rect2(2048, 3072, 1024, 1024)
 [sub_resource type="AtlasTexture" id="AtlasTexture_e753p"]
 atlas = ExtResource("3_r4csm")
 region = Rect2(3072, 3072, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umlrn"]
+atlas = ExtResource("3_15610")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbe4v"]
+atlas = ExtResource("3_15610")
+region = Rect2(1024, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avmds"]
 atlas = ExtResource("3_r4csm")
@@ -664,6 +727,17 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umlrn")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_nbe4v")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 24.0
+}, {
+"frames": [{
 "duration": 16.0,
 "texture": SubResource("AtlasTexture_avmds")
 }],
@@ -764,11 +838,13 @@ size = Vector2(321, 154.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7myqs"]
 size = Vector2(219.5, 654)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("damaged_state", "dead_state")]
 z_index = 5
 collision_mask = 256
 floor_snap_length = 32.0
 script = ExtResource("1_ufpo8")
+damaged_state = NodePath("state_machine/damaged")
+dead_state = NodePath("state_machine/dead")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
@@ -779,8 +855,9 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"jump_transition"
+animation = &"damaged"
 autoplay = "idle"
+frame = 1
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -163)
@@ -834,6 +911,17 @@ jump_state = NodePath("../Movement_Nodes/jump")
 falling_state = NodePath("../Movement_Nodes/falling")
 attack_state = NodePath("../Attack_Nodes/attack")
 animation_name = "idle"
+
+[node name="damaged" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("9_j7f1t")
+idle_state = NodePath("../idle")
+animation_name = "damaged"
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[node name="dead" type="Node" parent="state_machine"]
+script = ExtResource("9_avmds")
+animation_name = "dead"
+metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [node name="Movement_Nodes" type="Node" parent="state_machine"]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://bthpm0n4d72d2"]
+[gd_scene load_steps=35 format=3 uid="uid://bthpm0n4d72d2"]
 
 [ext_resource type="Script" uid="uid://ui3es1duekp0" path="res://Scripts/Monsters/Ground Monster/ground_monster.gd" id="1_ekxj3"]
 [ext_resource type="Texture2D" uid="uid://cc5hgbve43mad" path="res://Assets/Sprites/Ground Monster Sprite Sheet.png" id="2_ekxj3"]
+[ext_resource type="Script" uid="uid://3x31pcdt0ekm" path="res://Scripts/Component/hitbox.gd" id="3_6bn2f"]
 [ext_resource type="Script" uid="uid://x5df8oalrox" path="res://Scripts/Component/hitbox_collision.gd" id="3_e65vh"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_xcj1l"]
 [ext_resource type="Script" uid="uid://d2c16tqptax0l" path="res://Scripts/Monsters/Ground Monster/States/idle.gd" id="4_6ehe8"]
@@ -395,6 +396,9 @@ shape = SubResource("RectangleShape2D_2u8at")
 disabled = true
 
 [node name="attack_collisions" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("3_6bn2f")
 
 [node name="attack" type="CollisionShape2D" parent="attack_collisions"]
 position = Vector2(463, -547)
@@ -450,5 +454,6 @@ metadata/_custom_type_script = "uid://byui1fgsnd650"
 [connection signal="animation_finished" from="AnimationPlayer" to="state_machine" method="_on_animation_player_animation_finished"]
 [connection signal="area_shape_entered" from="hurtbox_area" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="body_entered" from="hurtbox_area" to="." method="_on_hitbox_body_entered"]
+[connection signal="area_shape_entered" from="attack_collisions" to="attack_collisions" method="_on_area_shape_entered"]
 [connection signal="area_entered" from="detection_area" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="detection_area" to="." method="_on_detection_area_area_exited"]
