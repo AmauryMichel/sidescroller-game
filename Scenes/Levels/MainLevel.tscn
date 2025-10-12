@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://v0evmgjmbixo"]
+[gd_scene load_steps=8 format=4 uid="uid://v0evmgjmbixo"]
 
 [ext_resource type="Texture2D" uid="uid://ty8jjaqj12bc" path="res://Assets/Backgrounds/Tileset.png" id="1_7rqgy"]
+[ext_resource type="PackedScene" uid="uid://qrsl5yqtc8x8" path="res://Scenes/Prefabs/health_bar.tscn" id="1_kmvrn"]
 [ext_resource type="PackedScene" uid="uid://p0y8p6yvvw2h" path="res://Scenes/Prefabs/Player.tscn" id="2_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://bp3p2br6tloi" path="res://Scenes/Prefabs/Components/killzone.tscn" id="4_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://bthpm0n4d72d2" path="res://Scenes/Prefabs/Monsters/ground_monster.tscn" id="4_xx3f3"]
@@ -57,3 +58,8 @@ position = Vector2(5923, -1990)
 
 [node name="Killzone" parent="." instance=ExtResource("4_7rqgy")]
 position = Vector2(0, 72)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("1_kmvrn")]
+player = NodePath("../../Player")

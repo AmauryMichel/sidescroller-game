@@ -7,6 +7,10 @@ extends CharacterBody2D
 @onready var attack_collisions: Area2D = $attack_collisions
 @onready var state_machine = $state_machine
 
+#region Signals
+signal health_changed
+#endregion
+
 #region State variables
 #States
 @export var damaged_state: State
@@ -66,6 +70,7 @@ func set_running(run: bool):
 
 func take_damage(damage: int, attack_hitstun: float, direction: bool):
 	health -= damage
+	health_changed.emit()
 	
 	flip(!direction)
 	
