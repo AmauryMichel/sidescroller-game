@@ -16,7 +16,7 @@ extends CharacterBody2D
 var previous_state: State
 #endregion
 
-var is_flipped: bool
+@onready var is_flipped: bool = self.scale.x < 0
 var player: Node2D = null
 var hitstun: float = 0
 

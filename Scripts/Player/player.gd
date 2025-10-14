@@ -17,7 +17,7 @@ signal health_changed
 @export var dead_state: State
 var previous_state: State
 #Movement
-var is_flipped = self.scale.x < 0
+@onready var is_flipped = self.scale.x < 0
 var move_speed: float = 1500
 var walk_speed: float = 1500
 var run_speed: float = 3000
