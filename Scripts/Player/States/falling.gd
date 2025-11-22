@@ -3,6 +3,7 @@ extends State_Movement
 @export var walk_state: State
 @export var run_state: State
 @export var landing_state: State
+@export var attack_air_state: State
 
 # To accelerate gravity when falling
 var air_time = 0.0
@@ -11,6 +12,11 @@ const BONUS_GRAVITY = 2.0
 func enter() -> void:
 	super()
 	air_time = 0.0
+
+func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed('attack'):
+		return attack_air_state
+	return null
 
 func process_physics(delta: float) -> State:
 	air_time += delta
