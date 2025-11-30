@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp05a2abs7vlt"
-path="res://.godot/imported/Player Damaged Sheet.png-9ad03aede35a1d60f9bbf4a6fcf14b59.ctex"
+uid="uid://deckmlldsx0sy"
+path="res://.godot/imported/Player Attack Air Sheet.png-abf76d5e9f3219a531860f32230b0856.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player Damaged Sheet.png"
-dest_files=["res://.godot/imported/Player Damaged Sheet.png-9ad03aede35a1d60f9bbf4a6fcf14b59.ctex"]
+source_file="res://Assets/Sprites/Player/Player Attack Air Sheet.png"
+dest_files=["res://.godot/imported/Player Attack Air Sheet.png-abf76d5e9f3219a531860f32230b0856.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5hgbve43mad"
-path="res://.godot/imported/Ground Monster Sprite Sheet.png-1ce3ed385fbcf1af57037e350b323ad5.ctex"
+uid="uid://coiwgg0ah67xf"
+path="res://.godot/imported/Player Attack Launch Sheet.png-031f87f4cbab4086472e0564e492deed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Ground Monster Sprite Sheet.png"
-dest_files=["res://.godot/imported/Ground Monster Sprite Sheet.png-1ce3ed385fbcf1af57037e350b323ad5.ctex"]
+source_file="res://Assets/Sprites/Player/Player Attack Launch Sheet.png"
+dest_files=["res://.godot/imported/Player Attack Launch Sheet.png-031f87f4cbab4086472e0564e492deed.ctex"]
 
 [params]
 

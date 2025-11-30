@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjx7fvon1lolj"
-path="res://.godot/imported/Monster Sprite Sheet.png-5540b94e13a340558212652a291f0057.ctex"
+uid="uid://bp05a2abs7vlt"
+path="res://.godot/imported/Player Damaged Sheet.png-7f6f86531d9fbce45d8c9a708cf37c41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Monster Sprite Sheet.png"
-dest_files=["res://.godot/imported/Monster Sprite Sheet.png-5540b94e13a340558212652a291f0057.ctex"]
+source_file="res://Assets/Sprites/Player/Player Damaged Sheet.png"
+dest_files=["res://.godot/imported/Player Damaged Sheet.png-7f6f86531d9fbce45d8c9a708cf37c41.ctex"]
 
 [params]
 
