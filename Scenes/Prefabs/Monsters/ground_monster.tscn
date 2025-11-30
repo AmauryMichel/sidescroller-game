@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=3 uid="uid://bthpm0n4d72d2"]
 
 [ext_resource type="Script" uid="uid://ui3es1duekp0" path="res://Scripts/Monsters/Ground Monster/ground_monster.gd" id="1_ekxj3"]
-[ext_resource type="Texture2D" uid="uid://cc5hgbve43mad" path="res://Assets/Sprites/Ground Monster Sprite Sheet.png" id="2_ekxj3"]
+[ext_resource type="Texture2D" uid="uid://cc5hgbve43mad" path="res://Assets/Sprites/Monsters/Ground Monster Sprite Sheet.png" id="2_ekxj3"]
 [ext_resource type="Script" uid="uid://3x31pcdt0ekm" path="res://Scripts/Component/hitbox.gd" id="3_6bn2f"]
 [ext_resource type="Script" uid="uid://x5df8oalrox" path="res://Scripts/Component/hitbox_collision.gd" id="3_e65vh"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_xcj1l"]

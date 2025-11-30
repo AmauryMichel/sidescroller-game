@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c1f61apj213n3"]
 
 [ext_resource type="Script" uid="uid://fseflsyxjm4r" path="res://Scripts/Monsters/Flying Monster/flying_monster.gd" id="1_ajqf0"]
-[ext_resource type="Texture2D" uid="uid://cjx7fvon1lolj" path="res://Assets/Sprites/Monster Sprite Sheet.png" id="2_wp1k5"]
+[ext_resource type="Texture2D" uid="uid://cjx7fvon1lolj" path="res://Assets/Sprites/Monsters/Monster Sprite Sheet.png" id="2_wp1k5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlqtq"]
 atlas = ExtResource("2_wp1k5")

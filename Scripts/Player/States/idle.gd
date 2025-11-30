@@ -5,6 +5,7 @@ extends State
 @export var jump_state: State
 @export var falling_state: State
 @export var attack_state: State
+@export var attack_launch_state: State
 
 var cooldown = 0.1
 
@@ -15,7 +16,10 @@ func enter() -> void:
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('attack'):
-		return attack_state
+		if Input.is_action_pressed('move_up'):
+			return attack_launch_state
+		else:
+			return attack_state
 	if Input.is_action_pressed('jump') and parent.is_on_floor():
 		return jump_state
 	if Input.is_action_pressed('move_left') or Input.is_action_pressed('move_right'):

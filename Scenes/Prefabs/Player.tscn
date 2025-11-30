@@ -1,12 +1,13 @@
-[gd_scene load_steps=91 format=3 uid="uid://p0y8p6yvvw2h"]
+[gd_scene load_steps=101 format=3 uid="uid://p0y8p6yvvw2h"]
 
 [ext_resource type="Script" uid="uid://brscdpepa2j5c" path="res://Scripts/Player/player.gd" id="1_ufpo8"]
-[ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player Movement Sheet.png" id="2_212jg"]
-[ext_resource type="Texture2D" uid="uid://bp05a2abs7vlt" path="res://Assets/Sprites/Player Damaged Sheet.png" id="3_15610"]
-[ext_resource type="Texture2D" uid="uid://deckmlldsx0sy" path="res://Assets/Sprites/Player Attack Air Sheet.png" id="3_fm7cf"]
+[ext_resource type="Texture2D" uid="uid://dpjbpvshnqwr5" path="res://Assets/Sprites/Player/Player Movement Sheet.png" id="2_212jg"]
+[ext_resource type="Texture2D" uid="uid://bp05a2abs7vlt" path="res://Assets/Sprites/Player/Player Damaged Sheet.png" id="3_15610"]
+[ext_resource type="Texture2D" uid="uid://deckmlldsx0sy" path="res://Assets/Sprites/Player/Player Attack Air Sheet.png" id="3_fm7cf"]
 [ext_resource type="Script" uid="uid://3x31pcdt0ekm" path="res://Scripts/Component/hitbox.gd" id="3_p8iar"]
-[ext_resource type="Texture2D" uid="uid://wfquttjvo5tq" path="res://Assets/Sprites/Player Attack Sheet.png" id="3_r4csm"]
+[ext_resource type="Texture2D" uid="uid://wfquttjvo5tq" path="res://Assets/Sprites/Player/Player Attack Sheet.png" id="3_r4csm"]
 [ext_resource type="PackedScene" uid="uid://bqpl10vodu2hw" path="res://Scripts/state_machine/state_machine.tscn" id="3_rhohb"]
+[ext_resource type="Texture2D" uid="uid://coiwgg0ah67xf" path="res://Assets/Sprites/Player/Player Attack Launch Sheet.png" id="4_1km8o"]
 [ext_resource type="Script" uid="uid://ilgqklvc3not" path="res://Scripts/Player/States/idle.gd" id="4_4pem1"]
 [ext_resource type="Script" uid="uid://x5df8oalrox" path="res://Scripts/Component/hitbox_collision.gd" id="5_7myqs"]
 [ext_resource type="Script" uid="uid://drftccj11r5d0" path="res://Scripts/Player/States/walk.gd" id="5_xhr4h"]
@@ -19,9 +20,11 @@
 [ext_resource type="Script" uid="uid://couhj34cemvam" path="res://Scripts/Player/States/landing.gd" id="11_7vt35"]
 [ext_resource type="Script" uid="uid://b4ylujtlhn17x" path="res://Scripts/Player/States/dash_attack.gd" id="12_7lrdb"]
 [ext_resource type="Script" uid="uid://d3aa65kkgq1yi" path="res://Scripts/Player/States/attack_air.gd" id="19_4logw"]
+[ext_resource type="Script" uid="uid://bmw411g16emfs" path="res://Scripts/Player/States/attack_launch.gd" id="21_i60x6"]
 
 [sub_resource type="Animation" id="Animation_nih01"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -113,6 +116,18 @@ tracks/7/path = NodePath("../attack_collisions/attack_air3:disabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../attack_collisions/attack_launch:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -399,6 +414,60 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_iue88"]
+length = 0.958333
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.25, 0.291667, 0.375, 0.708333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["attack_launch"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../state_machine/Attack_Other_Nodes/attack_launch")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../attack_collisions/attack_launch:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.166667, 0.291667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="Animation" id="Animation_ley4d"]
 length = 0.25
 step = 0.0416667
@@ -678,6 +747,7 @@ _data = {
 &"attack_air1": SubResource("Animation_glsrv"),
 &"attack_air2": SubResource("Animation_xruvw"),
 &"attack_air3": SubResource("Animation_4twac"),
+&"attack_launch": SubResource("Animation_iue88"),
 &"damaged": SubResource("Animation_ley4d"),
 &"dash_attack": SubResource("Animation_fm7cf"),
 &"falling": SubResource("Animation_4logw"),
@@ -796,6 +866,30 @@ region = Rect2(8192, 2048, 2048, 1024)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7jnvr"]
 atlas = ExtResource("3_fm7cf")
 region = Rect2(10240, 2048, 2048, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yml65"]
+atlas = ExtResource("4_1km8o")
+region = Rect2(0, 0, 1024, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjrp3"]
+atlas = ExtResource("4_1km8o")
+region = Rect2(1024, 0, 1024, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw1wd"]
+atlas = ExtResource("4_1km8o")
+region = Rect2(2048, 0, 1024, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8xvs"]
+atlas = ExtResource("4_1km8o")
+region = Rect2(3072, 0, 1024, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1rra"]
+atlas = ExtResource("4_1km8o")
+region = Rect2(4096, 0, 1024, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlpp7"]
+atlas = ExtResource("4_1km8o")
+region = Rect2(5120, 0, 1024, 2048)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umlrn"]
 atlas = ExtResource("3_15610")
@@ -980,6 +1074,29 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_yml65")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_mjrp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw1wd")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_y8xvs")
+}, {
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_x1rra")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_vlpp7")
+}],
+"loop": false,
+"name": &"attack_launch",
+"speed": 24.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_umlrn")
 }, {
@@ -1100,6 +1217,9 @@ size = Vector2(648.594, 293.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i60x6"]
 size = Vector2(519.5, 342)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kl4ka"]
+size = Vector2(330, 900)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("damaged_state", "dead_state")]
 z_index = 5
 collision_mask = 256
@@ -1117,9 +1237,8 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"attack_air3"
+animation = &"attack_launch"
 autoplay = "idle"
-frame = 5
 
 [node name="ground_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -163)
@@ -1187,16 +1306,24 @@ disabled = true
 script = ExtResource("5_7myqs")
 metadata/_custom_type_script = "uid://x5df8oalrox"
 
+[node name="attack_launch" type="CollisionShape2D" parent="attack_collisions"]
+position = Vector2(203, -450)
+shape = SubResource("RectangleShape2D_kl4ka")
+disabled = true
+script = ExtResource("5_7myqs")
+metadata/_custom_type_script = "uid://x5df8oalrox"
+
 [node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_rhohb")]
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state", "run_state", "jump_state", "falling_state", "attack_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("walk_state", "run_state", "jump_state", "falling_state", "attack_state", "attack_launch_state")]
 script = ExtResource("4_4pem1")
 walk_state = NodePath("../Movement_Nodes/walk")
 run_state = NodePath("../Movement_Nodes/run")
 jump_state = NodePath("../Movement_Nodes/jump")
 falling_state = NodePath("../Movement_Nodes/falling")
 attack_state = NodePath("../Attack_Nodes/attack1")
+attack_launch_state = NodePath("../Attack_Other_Nodes/attack_launch")
 animation_name = "idle"
 
 [node name="damaged" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
@@ -1228,10 +1355,6 @@ jump_state = NodePath("../jump")
 falling_state = NodePath("../falling")
 dash_attack_state = NodePath("../../Attack_Nodes/dash_attack")
 animation_name = "run"
-metadata/_custom_type_script = "uid://byui1fgsnd650"
-
-[node name="dash" type="Node" parent="state_machine/Movement_Nodes"]
-script = ExtResource("9_avmds")
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [node name="jump" type="Node" parent="state_machine/Movement_Nodes" node_paths=PackedStringArray("walk_state", "run_state", "landing_state", "falling_state", "attack_air_state")]
@@ -1321,6 +1444,19 @@ metadata/_custom_type_script = "uid://byui1fgsnd650"
 script = ExtResource("19_4logw")
 falling_state = NodePath("../../Movement_Nodes/falling")
 animation_name = "attack_air3"
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[node name="Attack_Other_Nodes" type="Node" parent="state_machine"]
+
+[node name="attack_launch" type="Node" parent="state_machine/Attack_Other_Nodes" node_paths=PackedStringArray("falling_state", "next_attack_state")]
+script = ExtResource("21_i60x6")
+falling_state = NodePath("../../Movement_Nodes/falling")
+next_attack_state = NodePath("../../Attack_Air_Nodes/attack_air1")
+animation_name = "attack_launch"
+metadata/_custom_type_script = "uid://byui1fgsnd650"
+
+[node name="attack_dash" type="Node" parent="state_machine/Attack_Other_Nodes"]
+script = ExtResource("9_avmds")
 metadata/_custom_type_script = "uid://byui1fgsnd650"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="state_machine" method="_on_animation_player_animation_finished"]
