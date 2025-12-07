@@ -19,6 +19,7 @@ var previous_state: State
 @onready var is_flipped: bool = self.scale.x < 0
 var player: Node2D = null
 var hitstun: float = 0
+var vector_kb: Vector2
 
 #region State Machine Functions
 func _ready() -> void:
@@ -38,9 +39,11 @@ func flip(new_flip: bool):
 	is_flipped = new_flip
 	self.scale.x *= -1
 
-func take_damage(damage: int, attack_hitstun: float, direction: bool):
+func take_damage(damage: int, attack_hitstun: float, direction: bool, new_vector_kb: Vector2):
 	health -= damage
 	flip(!direction)
+	
+	vector_kb = new_vector_kb
 	
 	if health <= 0:
 		hurtbox_area.set_deferred("monitorable", false)

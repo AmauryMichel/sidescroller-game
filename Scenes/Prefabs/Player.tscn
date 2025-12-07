@@ -1283,6 +1283,7 @@ position = Vector2(302.25, -358)
 shape = SubResource("RectangleShape2D_7myqs")
 disabled = true
 script = ExtResource("5_7myqs")
+x_knockback = 2000.0
 metadata/_custom_type_script = "uid://x5df8oalrox"
 
 [node name="attack_air1" type="CollisionShape2D" parent="attack_collisions"]
@@ -1304,6 +1305,8 @@ position = Vector2(350, -550)
 shape = SubResource("RectangleShape2D_i60x6")
 disabled = true
 script = ExtResource("5_7myqs")
+x_knockback = 3000.0
+y_knockback = 500.0
 metadata/_custom_type_script = "uid://x5df8oalrox"
 
 [node name="attack_launch" type="CollisionShape2D" parent="attack_collisions"]
@@ -1311,6 +1314,7 @@ position = Vector2(203, -450)
 shape = SubResource("RectangleShape2D_kl4ka")
 disabled = true
 script = ExtResource("5_7myqs")
+y_knockback = -4000.0
 metadata/_custom_type_script = "uid://x5df8oalrox"
 
 [node name="state_machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_rhohb")]

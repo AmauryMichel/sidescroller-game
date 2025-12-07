@@ -55,7 +55,7 @@ position_smoothing_enabled = true
 
 [node name="Ground Monster" parent="." instance=ExtResource("4_xx3f3")]
 position = Vector2(5923, -1990)
-is_static = true
+health = 400
 
 [node name="Killzone" parent="." instance=ExtResource("4_7rqgy")]
 position = Vector2(0, 72)

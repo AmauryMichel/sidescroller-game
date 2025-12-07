@@ -68,7 +68,7 @@ func set_running(run: bool):
 	else:
 		move_speed = walk_speed
 
-func take_damage(damage: int, attack_hitstun: float, direction: bool):
+func take_damage(damage: int, attack_hitstun: float, direction: bool, _new_vector_kb: Vector2):
 	health -= damage
 	health_changed.emit()
 	
