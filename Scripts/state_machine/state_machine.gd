@@ -45,12 +45,6 @@ func process_frame(delta: float) -> void:
 	if new_state:
 		change_state(new_state)
 
-func force_change_state(new_state: State):
-	current_state.exit()
-	
-	current_state = new_state
-	new_state.enter()
-
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	var new_state = current_state.animation_finished()
 	if new_state:

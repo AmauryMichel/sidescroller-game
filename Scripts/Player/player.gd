@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 	
 	if Input.is_action_just_pressed("break") and is_on_floor():
-		state_machine.force_change_state("idle")
+		state_machine.change_state(damaged_state)
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
@@ -78,4 +78,4 @@ func take_damage(damage: int, attack_hitstun: float, direction: bool, _new_vecto
 		get_tree().reload_current_scene.call_deferred()
 	else: 
 		hitstun = attack_hitstun
-		state_machine.force_change_state(damaged_state)
+		state_machine.change_state(damaged_state)

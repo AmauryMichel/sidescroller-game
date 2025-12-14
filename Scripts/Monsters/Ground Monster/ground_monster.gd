@@ -47,10 +47,10 @@ func take_damage(damage: int, attack_hitstun: float, direction: bool, new_vector
 	
 	if health <= 0:
 		hurtbox_area.set_deferred("monitorable", false)
-		state_machine.force_change_state(dead_state)
+		state_machine.change_state(dead_state)
 	else: 
 		hitstun = attack_hitstun
-		state_machine.force_change_state(damaged_state)
+		state_machine.change_state(damaged_state)
 
 func _on_detection_area_area_entered(area: Area2D) -> void:
 	player = area.get_parent()
